@@ -1,0 +1,15 @@
+type: object
+required:
+  - limit
+  - page
+  - total_elements
+  - total_pages
+properties:
+  limit:
+    type: integer
+  page:
+    type: integer
+  total_elements:
+    type: integer
+  total_pages:
+    type: integer

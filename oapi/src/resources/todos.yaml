@@ -1,0 +1,49 @@
+get:
+  summary: List Todos
+  operationId: listTodos
+  description: Lists all todos
+  tags:
+    - todos
+  parameters:
+    - limit:
+      $ref: ../parameters/limit.yaml
+    - page:
+      $ref: ../parameters/page.yaml
+      allowEmptyValue:
+  responses:
+    "200":
+      description: A page of todos.
+      content:
+        application/json:
+          schema:
+            properties:
+              data: 
+                allOf:
+                  - $ref: ../responses/paginated.yaml
+                  - type: object
+                    properties:
+                      data: 
+                        type: array
+                        items: 
+                          $ref: '../schemas/todo.yaml'
+
+post:
+  summary: Create Todo
+  operationId: createTodo
+  description: Creates a todo with is_completed set to false.
+  tags:
+    - todos
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../schemas/todo.yaml
+  responses:
+    "200":
+      description: Newly created todo.
+      content:
+        application/json:
+          schema:
+            properties:
+              data: 
+                $ref: '../schemas/todo.yaml'
